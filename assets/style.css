@@ -1,0 +1,395 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.logo {
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.logo i {
+  color: #FFC107;
+  margin-right: 8px;
+}
+
+#menu-bar {
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+
+/* Home Section */
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f0f4f8; /* Light background for contrast */
+}
+
+.content {
+  flex: 1;
+  max-width: 50%;
+  padding: 20px;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 1.125rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.image {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .content, .image {
+      max-width: 100%;
+      padding: 10px;
+  }
+
+  .image img {
+      max-width: 90%;
+      margin-top: 20px;
+  }
+}
+
+
+.home .content {
+  flex: 1;
+}
+
+.home h1 {
+  margin: 0 0 20px;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.home p {
+  margin: 0 0 20px;
+  font-size: 18px;
+}
+
+.home .btn {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.home .btn:hover {
+  background-color: #0056b3;
+}
+
+.home .image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Specialty Section */
+.speciality {
+  padding: 40px 0;
+}
+
+.speciality h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.speciality span {
+  color: #007BFF;
+}
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 200px;
+}
+
+.box i {
+  font-size: 40px;
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.box h3 {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.box p {
+  margin: 0;
+}
+
+/* Steps Section */
+.steps {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+}
+
+.steps h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.steps span {
+  color: #007BFF;
+}
+
+.step-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.step-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 200px;
+}
+
+.step-box i {
+  font-size: 40px;
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.step-box h3 {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+/* About Section */
+.about {
+  padding: 20px 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  text-align: center; /* Center-aligns the heading text */
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about h2 span {
+  color: #007BFF; /* Highlight color */
+}
+
+.about-container {
+  display: flex;
+  align-items: center; /* Vertically centers items */
+  justify-content: center; /* Centers items horizontally */
+  gap: 20px; /* Space between image and text */
+  max-width: 1200px; /* Limit width for better alignment */
+  margin: 0 auto; /* Center container */
+}
+
+.about-container img {
+  max-width: 25%; /* Adjust size to make the image smaller */
+  height: auto;
+  border-radius: 8px;
+}
+
+.about-container p {
+  max-width: 50%; /* Adjust size based on design needs */
+  font-size: 1rem; /* Adjust text size */
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .about-container img {
+      max-width: 80%;
+      margin-bottom: 20px;
+  }
+
+  .about-container p {
+      max-width: 100%;
+      font-size: 1rem; /* Adjust text size for mobile */
+  }
+}
+
+
+/* Footer */
+footer {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.share {
+  margin-bottom: 20px;
+}
+
+.share .btn {
+  background-color: #FFC107;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.share .btn:hover {
+  background-color: #e0a800;
+}
+
+.credit {
+  margin: 0;
+}
+
+.credit span {
+  color: #FFC107;
+}
+
+/* Scroll-to-Top Button */
+#scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  #menu-bar {
+      display: block;
+  }
+
+  .home {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .home .image {
+      margin-top: 20px;
+  }
+
+  .box-container, .step-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .about-container {
+      flex-direction: column;
+  }
+}
