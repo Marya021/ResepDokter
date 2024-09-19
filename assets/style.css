@@ -1,4 +1,6 @@
 /* Global Styles */
+
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -231,24 +233,41 @@ main {
 .step-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
 }
 
 .step-box {
-  background: #fff;
+  background: #f9f9f9; /* Warna latar belakang */
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1 1 200px;
+  width: 200px; /* Sesuaikan dengan kebutuhan */
 }
 
 .step-box i {
-  font-size: 40px;
-  color: #007BFF;
+  font-size: 2rem; /* Ukuran ikon */
+  color: #333; /* Warna ikon */
   margin-bottom: 10px;
 }
+
+.step-link {
+  display: inline-block;
+  background-color: #007bff; /* Warna latar belakang link */
+  color: #fff; /* Warna teks link */
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none; /* Menghilangkan garis bawah */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Jarak antara ikon dan link */
+}
+
+.step-link:hover {
+  background-color: #0056b3; /* Warna latar belakang link saat hover */
+}
+
 
 .step-box h3 {
   margin: 10px 0;

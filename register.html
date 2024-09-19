@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ResepDokter.id</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/register.css">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Daftar <span>ResepDokter</span></h2>
+        <form id="registerForm">
+            <input type="text" name="name" placeholder="Nama Lengkap" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Kata Sandi" required>
+            <button type="submit">Daftar</button>
+        </form>
+        <div id="welcomeMessage" style="display:none;"></div>
+        <div class="login-link">
+            <p>Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div>Mohon tunggu...</div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+        import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxhqPbQb0hyCq0Jyb-fEZ64IWMuujcy6M",
+            authDomain: "resepdokter-f3e73.firebaseapp.com",
+            projectId: "resepdokter-f3e73",
+            storageBucket: "resepdokter-f3e73.appspot.com",
+            messagingSenderId: "1058462736744",
+            appId: "1:1058462736744:web:0feec5b0a9a23d2c4836dd",
+            measurementId: "G-XG9PRJK7LT"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+    
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+    
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+    
+                await setDoc(doc(db, "users", user.uid), {
+                    name: name,
+                    email: email,
+                });
+    
+                // Hide loading overlay
+                document.getElementById('loadingOverlay').style.display = 'none';
+                
+                // Show welcome message
+                document.getElementById('welcomeMessage').innerHTML = `Selamat Datang, ${name}!`;
+                document.getElementById('welcomeMessage').style.display = 'block';
+                
+                // Redirect to home or another page after showing the welcome message
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000); // 2 seconds delay to show the welcome message
+                
+            } catch (error) {
+                console.error('Error registering user:', error.message);
+                let errorMessage = 'Pendaftaran gagal: ' + error.message;
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Email sudah terdaftar. Silakan gunakan email lain.';
+                }
+                alert(errorMessage);
+            } finally {
+                // Hide loading overlay in case of error
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+    </script>
+    
+</body>
+</html>

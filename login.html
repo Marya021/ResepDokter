@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ResepDokter.id</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/register.css">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Masuk <span>ResepDokter</span></h2>
+        <form id="loginForm">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Kata Sandi" required>
+            <button type="submit">Masuk</button>
+            <div id="errorMessage" class="error-message" style="display:none;"></div>
+        </form>
+        <div id="welcomeMessage" style="display:none;"></div>
+        <div class="login-link">
+            <p>Sudah punya akun? <a href="register.html">Daftar Disini</a></p>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div>Mohon tunggu...</div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxhqPbQb0hyCq0Jyb-fEZ64IWMuujcy6M",
+            authDomain: "resepdokter-f3e73.firebaseapp.com",
+            projectId: "resepdokter-f3e73",
+            storageBucket: "resepdokter-f3e73.appspot.com",
+            messagingSenderId: "1058462736744",
+            appId: "1:1058462736744:web:0feec5b0a9a23d2c4836dd",
+            measurementId: "G-XG9PRJK7LT"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Tampilkan overlay loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Sembunyikan overlay loading
+                document.getElementById('loadingOverlay').style.display = 'none';
+                
+                // Tampilkan pesan selamat datang
+                document.getElementById('welcomeMessage').innerHTML = `Selamat Datang, ${user.email}!`;
+                document.getElementById('welcomeMessage').style.display = 'block';
+                
+                // Redirect ke halaman lain setelah beberapa detik
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000); // 2 detik delay untuk menunjukkan pesan selamat datang
+                
+            } catch (error) {
+                console.error('Error logging in:', error.message);
+                let errorMessage = 'Login gagal: Periksa Kembali Inputan Email dan Password';
+                if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Kata sandi salah. Silakan coba lagi.';
+                } else if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'Pengguna tidak ditemukan. Pastikan email yang dimasukkan benar.';
+                }
+                // Tampilkan pesan kesalahan di UI
+                document.getElementById('errorMessage').innerText = errorMessage;
+                document.getElementById('errorMessage').style.display = 'block';
+            } finally {
+                // Sembunyikan overlay loading jika terjadi kesalahan
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+    </script>
+    
+</body>
+</html>
